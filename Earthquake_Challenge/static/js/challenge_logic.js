@@ -16,7 +16,7 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 });
 
 // Create a third tile layer that will be in the background of our map.
-let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   accessToken: API_KEY
@@ -33,7 +33,7 @@ let map = L.map('mapid', {
 let baseMaps = {
   "Streets": streets,
   "Satellite": satelliteStreets,
-  "Dark": dark
+  "Outdoors": outdoors
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
@@ -143,7 +143,7 @@ function getColor(magnitude) {
   if (magnitude > 4) {
     return "#ea822c";
   }
-    return"98ee00";
+    return"#98ee00";
 }
 
 // 6. Use the function that determines the radius of the earthquake marker based on its magnitude.
@@ -208,7 +208,7 @@ legend.onAdd = function() {
   d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function(data)  {
     
     L.geoJson(data, {
-      style: {color: "#f29202", weight: 3},
+      style: {color: "#05617d", weight: 3},
     }).addTo(tectonicPlates);
   
   tectonicPlates.addTo(map);
